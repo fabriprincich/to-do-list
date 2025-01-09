@@ -2,11 +2,6 @@
 
 @section('title', $task->title)
 
-
-
-
-
-
 @section('content')
     <nav>
         <a href="/">Home</a>
