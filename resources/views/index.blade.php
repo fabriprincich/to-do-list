@@ -14,4 +14,9 @@
             <p>No tasks found</p>
         @endforelse
     </div><br>
+    <div>
+        <a href="{{ route('tasks.create') }}">
+            <button>Create Task</button>
+        </a>
+    </div>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Task;
 
@@ -17,12 +18,17 @@ Route::get('/tasks', function(Task $task){
 })->name("tasks.index");
 
 
+Route::view('/tasks/create', 'create')->name("tasks.create");
+
 Route::get("/tasks/{id}", function($id)  {
     return view("show", [
       'task' => Task::findOrFail($id)
     ]);
-})->name("tasks.show");
+})->name('tasks.show');
 
-// Route::fallback(function () {
-//     return "Got a 404";
-// });
+Route::post('/tasks', function(Request $request) {
+    dd($request->all());
+})->name("tasks.store");
+
+
+
