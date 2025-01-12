@@ -3,6 +3,10 @@
 @section('title', 'Create Task')
 
 @section('content')
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+    {{ $errors }}
     <form method="POST" action="{{ route('tasks.store') }}">
         @csrf
         <div>
@@ -18,7 +22,7 @@
             <textarea name="long_description" id="long_description", rows="10"></textarea>
         </div>
         <div>
-            <button type="submit">Create Task</button>
+            <button type="submit">Add Task</button>
         </div>
     </form>
 @endsection

@@ -3,6 +3,7 @@
 @section('title', 'Laravel Tasks App')
 
 @section('content')
+
     <div>
         <h1>Tasks App</h1>
         @forelse ($tasks as $task)
