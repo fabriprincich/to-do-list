@@ -2,10 +2,12 @@
 
 @section('title', $task->title)
 
-@section('content')
+@section('navigation')
     <nav>
         <a href="/">Home</a>
     </nav>
+@endsection
+@section('content')
     <h1>{{ $task->title }}</h1>
     <p>{{ $task->description }}</p>
     <p>{{ $task->long_description }}</p>
