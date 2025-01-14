@@ -14,6 +14,10 @@
     @if ($task->completed == false)
         <p>Task not completed</p>
     @endif
-    <p>{{ $task->created_at }}</p>
-    <p>{{ $task->updated_at }}</p>
+    <p>Task created at: {{ $task->created_at }}</p>
+    <p>Last updated at: {{ $task->updated_at }}</p>
+
+    <button>
+        <a href="{{ route('tasks.edit', ['id' => $task->id]) }}">Edit</a>
+    </button>
 @endsection

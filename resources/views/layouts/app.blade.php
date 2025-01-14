@@ -14,7 +14,7 @@
     <title>@yield('title')</title>
     <div>
         @if (session()->has('success'))
-            <div>{{ session('success') }}</div>
+            <div style="color: rgb(0, 188, 0)">{{ session('success') }}</div>
         @endif
         @yield('content')
     </div>
