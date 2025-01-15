@@ -18,6 +18,6 @@
     <p>Last updated at: {{ $task->updated_at }}</p>
 
     <button>
-        <a href="{{ route('tasks.edit', ['id' => $task->id]) }}">Edit</a>
+        <a href="{{ route('tasks.edit', ['task' => $task->id]) }}">Edit</a>
     </button>
 @endsection

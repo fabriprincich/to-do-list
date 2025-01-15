@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             // 'name' => 'Test User',
             // 'email' => 'test@example.com',
         // );
-        // Task::factory(8)->create();
-        User::factory(2)->unverified()->create();
+        Task::factory(8)->create();
+        //Task::factory(8)->unverified()->create();
     }
 }
