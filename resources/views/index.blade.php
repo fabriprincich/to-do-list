@@ -3,7 +3,11 @@
 @section('title', 'Laravel Tasks App')
 
 @section('content')
-
+    <div>
+        <a href="{{ route('tasks.create') }}">
+            <button>Create Task</button>
+        </a>
+    </div>
     <div>
         <h1>Tasks App</h1>
         @forelse ($tasks as $task)
@@ -14,10 +18,12 @@
         @empty
             <p>No tasks found</p>
         @endforelse
-    </div><br>
-    <div>
-        <a href="{{ route('tasks.create') }}">
-            <button>Create Task</button>
-        </a>
+
+        @if($tasks->count())
+            <nav>
+                {{ $tasks->links() }}
+            </nav>
+        @endif
     </div>
+    
 @endsection

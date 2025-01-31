@@ -11,10 +11,9 @@ Route::get('/', function () {  // Redirecciona la ruta para la página principa
   return redirect()->route('tasks.index');
 });
 
-
 Route::get('/tasks', function(Task $task){ // Generara la ruta para la página principal
     return view("index", [
-        'tasks' => $task::orderBy('updated_at', 'desc')->get()
+        'tasks' => $task::latest()->paginate(10),
     ]);
 })->name("tasks.index");
 
@@ -33,31 +32,24 @@ Route::get("/tasks/{task}/edit", function(Task $task)  {
   ]);
 })->name('tasks.edit');
 
-Route::post('/tasks', function(TaskRequest $request) {
-    // $data = $request->validated();
-
-    // $task = new Task();
-    // $task->title = $data['title'];
-    // $task->description = $data['description'];
-    // $task->long_description = $data['long_description'];
-    // $task->save();
-
+Route::post('/tasks', function(TaskRequest $request) { // Crear una nueva tarea
     $task = Task::create($request->validated());
     return redirect()->route('tasks.show', ['task' => $task->id])->with('success','Task created successfully.');
 })->name("tasks.store");
 
 Route::put("/tasks/{task}", function(Task $task, TaskRequest $request) { // Actualizar una tarea
-  //$task->update($request->validated());
-    // $task->title = $data['title'];
-    // $task->description = $data['description'];
-    // $task->long_description = $data['long_description'];
-    // $task->save();
 
     $task->update($request->validated());
     return redirect()->route('tasks.show', ['task' => $task->id])->with('success','Task updated successfully.');
   })->name("tasks.update");
 
-Route::delete("/tasks/{task}", function(Task $task) { 
+Route::delete("/tasks/{task}", function(Task $task) { // Eliminar una tarea
   $task->delete();
   return redirect()->route("tasks.index")->with("success","Task deleted successfully");
 })->name("tasks.destroy");
+
+Route::put("/tasks/{task}/toggle-complete", function(Task $task) { // toggle de tarea completada
+  $task->toggleComplete();
+
+  return redirect()->back()->with('success','Task updated successfully.');
+})->name('tasks.toggle-complete');
