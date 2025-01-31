@@ -3,24 +3,24 @@
 @section('title', 'Laravel Tasks App')
 
 @section('content')
-    <div>
-        <a href="{{ route('tasks.create') }}">
-            <button>Create Task</button>
+    <nav class="mb-5">
+        <a href="{{ route('tasks.create') }}"
+            class="text-grey-700 font-medium underline decoration-grey-500 hover:text-blue-900">
+            Create Task
         </a>
-    </div>
+    </nav>
     <div>
-        <h1>Tasks App</h1>
         @forelse ($tasks as $task)
             <div>
-                <a href="{{ route('tasks.show', ['task' => $task->id]) }}">{{ $task->title }}</a>
-
+                <a href="{{ route('tasks.show', ['task' => $task->id]) }}"
+                    @class(['line-through' => $task->completed])>{{ $task->title }}</a>
             </div>
         @empty
             <p>No tasks found</p>
         @endforelse
 
         @if($tasks->count())
-            <nav>
+            <nav class="mt-5">
                 {{ $tasks->links() }}
             </nav>
         @endif
